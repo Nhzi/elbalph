@@ -1,20 +1,18 @@
 'use client';
 
 import { createClient, createAccount, generatePrivateKey } from 'genlayer-js';
-import { simulator, localnet } from 'genlayer-js/chains';
+import { localnet } from 'genlayer-js/chains';
 import type { GenLayerClient, GenLayerChain } from 'genlayer-js/types';
 
 const RPC = process.env.NEXT_PUBLIC_GENLAYER_RPC ?? 'http://localhost:4000/api';
 
-// Pick a chain preset; GLSim and the local Studio both expose the same JSON-RPC
-// surface, so either preset works against http://localhost:4000/api.
-const chain: GenLayerChain = (() => {
-  try {
-    return { ...simulator, rpcUrls: { default: { http: [RPC] } } } as GenLayerChain;
-  } catch {
-    return { ...localnet, rpcUrls: { default: { http: [RPC] } } } as GenLayerChain;
-  }
-})();
+// The localnet preset ships with consensusMainContract baked in and
+// defaultNumberOfInitialValidators set, which is what addTransaction
+// encoding needs. We just override the RPC URL.
+const chain: GenLayerChain = {
+  ...localnet,
+  rpcUrls: { default: { http: [RPC] } },
+} as GenLayerChain;
 
 // Lazy singleton so React Fast Refresh doesn't spawn extra clients.
 let _client: GenLayerClient | null = null;
