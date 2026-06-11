@@ -4,9 +4,9 @@ import { GenLayerProvider } from '@/components/ClientProvider';
 import { Header } from '@/components/Header';
 
 export const metadata: Metadata = {
-  title: 'GenBet — Bet at the Speed of GenLayer',
+  title: 'ELBALPH — Bet at the Speed of AI Consensus',
   description:
-    'Sports + casino on GenLayer. AI-resolved sports markets, provably-fair casino — all settling on an AI-native L2.',
+    'ELBALPH is the AI-native betting house on GenLayer. Pari-mutuel sports markets resolved by validators reading the web, plus provably-fair casino games settled in a single transaction.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

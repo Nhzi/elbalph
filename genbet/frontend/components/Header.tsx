@@ -20,9 +20,12 @@ export function Header() {
     <header className="sticky top-0 z-30 backdrop-blur-md bg-ink/60 border-b border-white/5">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <Link href="/" className="flex items-center gap-2">
-          <span className="inline-block h-3 w-3 rounded-full bg-neon-green shadow-glow" />
-          <span className="font-display text-lg font-bold tracking-tight">
-            gen<span className="text-neon-green">bet</span>
+          <span className="relative inline-flex h-6 w-6 items-center justify-center">
+            <span className="absolute inset-0 rounded-md bg-gradient-to-br from-neon-green via-neon-cyan to-neon-pink shadow-glow" />
+            <span className="relative font-display text-[11px] font-black text-black">E</span>
+          </span>
+          <span className="font-display text-lg font-bold tracking-[0.18em]">
+            ELBA<span className="text-neon-green">LPH</span>
           </span>
           <span className="pill ml-2 text-white/70">GenLayer L2</span>
         </Link>

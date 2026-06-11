@@ -1,5 +1,7 @@
 'use client';
 
+import { TransactionStatus } from 'genlayer-js/types';
+import type { TransactionHash } from 'genlayer-js/types';
 import { getClient, SPORTSBOOK_ADDRESS, CASINO_ADDRESS } from './genlayer';
 
 /**
@@ -47,7 +49,10 @@ export type CasinoRound = {
 
 async function waitAccepted(hash: `0x${string}`) {
   const client = getClient();
-  return client.waitForTransactionReceipt({ hash, status: 'ACCEPTED' });
+  return client.waitForTransactionReceipt({
+    hash: hash as TransactionHash,
+    status: TransactionStatus.ACCEPTED,
+  });
 }
 
 // ────────────────────────────── Sportsbook ──────────────────────────────────
@@ -89,6 +94,7 @@ export async function resolveMarket(marketId: number) {
     address: SPORTSBOOK_ADDRESS,
     functionName: 'resolve',
     args: [marketId],
+    value: 0n,
   });
   const receipt = await waitAccepted(hash);
   return { hash, receipt };
@@ -100,6 +106,7 @@ export async function claimSportsBet(betId: number) {
     address: SPORTSBOOK_ADDRESS,
     functionName: 'claim',
     args: [betId],
+    value: 0n,
   });
   const receipt = await waitAccepted(hash);
   return { hash, receipt };

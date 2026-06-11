@@ -15,14 +15,14 @@ const chain: GenLayerChain = {
 } as GenLayerChain;
 
 // Lazy singleton so React Fast Refresh doesn't spawn extra clients.
-let _client: GenLayerClient | null = null;
+let _client: GenLayerClient<any> | null = null;
 let _account: ReturnType<typeof createAccount> | null = null;
 
 export function getAccount() {
   if (typeof window === 'undefined') return null;
   if (_account) return _account;
 
-  const KEY = 'genbet:pk';
+  const KEY = 'elbalph:pk';
   let pk = window.localStorage.getItem(KEY);
   if (!pk || !/^0x[0-9a-fA-F]{64}$/.test(pk)) {
     // generatePrivateKey returns the raw 0x-prefixed 32-byte hex we need to
@@ -34,7 +34,7 @@ export function getAccount() {
   return _account;
 }
 
-export function getClient(): GenLayerClient {
+export function getClient(): GenLayerClient<any> {
   if (_client) return _client;
   const account = getAccount();
   _client = createClient({
