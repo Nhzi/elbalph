@@ -31,12 +31,12 @@ export default async function main(client: GenLayerClient<any>) {
 
   // Seed the house bankroll so the very first bet doesn't trip the
   // "house bankroll too small" guard.
-  console.log('💰  Funding casino bankroll with 500 GEN…');
+  console.log('💰  Funding casino bankroll with 50 GEN…');
   const fundTx = await client.writeContract({
     address: casino as `0x${string}`,
     functionName: 'fund_house',
     args: [],
-    value: GEN(500),
+    value: GEN(50),
   });
   await client.waitForTransactionReceipt({ hash: fundTx, retries: 200 });
 
@@ -111,7 +111,9 @@ async function deployContract(
   }
 
   const r = receipt as any;
-  console.log('DEBUG full receipt:', JSON.stringify(r, null, 2).slice(0, 2000));
+  const safe = (v: any) =>
+    JSON.stringify(v, (_k, val) => (typeof val === 'bigint' ? val.toString() : val), 2);
+  console.log('DEBUG full receipt:', safe(r).slice(0, 2000));
   const address =
     r?.data?.contract_address ??
     r?.data?.contractAddress ??
