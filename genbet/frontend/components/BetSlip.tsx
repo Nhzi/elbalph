@@ -38,7 +38,9 @@ export function BetSlip({
     <div className="chip flex flex-col gap-3 p-4">
       <div className="flex items-end justify-between">
         <div>
-          <div className="text-[10px] uppercase tracking-widest text-white/40">Stake</div>
+          <div className="text-[10px] uppercase tracking-widest text-white/40">
+            Stake {currency === 'ELF' ? '· chips' : '· wallet'}
+          </div>
           <div className="font-display text-3xl font-bold tabular-nums">
             {amount.toFixed(2)} <span className="text-base text-white/40">{currency}</span>
           </div>

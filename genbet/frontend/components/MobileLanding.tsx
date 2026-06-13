@@ -42,13 +42,14 @@ export function MobileLanding({ house, totalSportsPool, rounds, markets }: Props
           <br />
           paid in{' '}
           <span className="bg-gradient-to-r from-neon-gold via-neon-pink to-neon-cyan bg-clip-text text-transparent">
-            ELF
+            ELF chips
           </span>
           .
         </h1>
         <p className="mt-3 text-sm text-white/65">
           Sports markets settled by validators reading the score page themselves. Casino games
-          paid in a single transaction. Use the faucet to grab 100,000 ELF — bets are gasless.
+          paid in a single transaction. Tap <span className="font-semibold text-neon-gold">Get
+          Chips</span> for 100,000 ELF — house credit, no wallet setup.
         </p>
         <div className="mt-4 flex flex-col gap-2">
           <Link href="/sports" className="btn-primary w-full text-center text-base">
@@ -62,11 +63,11 @@ export function MobileLanding({ house, totalSportsPool, rounds, markets }: Props
 
       {/* Stats row */}
       <section className="grid grid-cols-3 gap-2">
-        <StatCard label="Bankroll" value={`${fmtGen(house, 1)}`} suffix="ELF" accent="text-neon-gold" />
+        <StatCard label="Bankroll" value={`${fmtGen(house, 1)}`} suffix="GEN" accent="text-neon-green" />
         <StatCard
           label="Sports pool"
           value={`${fmtGen(totalSportsPool, 1)}`}
-          suffix="ELF"
+          suffix="GEN"
           accent="text-neon-cyan"
         />
         <StatCard

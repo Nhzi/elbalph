@@ -73,7 +73,7 @@ export function Header() {
       await elfClaimFaucet();
       setHasClaimedFaucet(true);
       setElfBalance(elfBalanceWei + 100000n * 10n ** 18n);
-      setClaimMsg('+100,000 ELF claimed');
+      setClaimMsg('+100,000 ELF chips claimed');
       setTimeout(() => setClaimMsg(null), 2500);
     } catch (e: any) {
       setClaimMsg(e?.shortMessage ?? e?.message ?? 'Faucet failed');
@@ -131,13 +131,19 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-2 sm:flex">
-          <div className="text-right leading-tight">
-            <div className="text-[10px] uppercase tracking-wider text-white/40">ELF</div>
-            <div className="font-mono text-sm text-neon-gold">{fmtElf(elfBalanceWei, 2)}</div>
+          <div
+            className="text-right leading-tight"
+            title="In-app chips — house credit, lives in the casino contract, not your wallet"
+          >
+            <div className="text-[10px] uppercase tracking-wider text-white/40">Chips</div>
+            <div className="font-mono text-sm text-neon-gold">{fmtElf(elfBalanceWei, 2)} ELF</div>
           </div>
-          <div className="text-right leading-tight">
-            <div className="text-[10px] uppercase tracking-wider text-white/40">GEN</div>
-            <div className="font-mono text-sm text-neon-green">{fmtGen(balanceWei, 3)}</div>
+          <div
+            className="text-right leading-tight"
+            title="Native GEN — the chain's gas token, lives in your wallet"
+          >
+            <div className="text-[10px] uppercase tracking-wider text-white/40">Wallet</div>
+            <div className="font-mono text-sm text-neon-green">{fmtGen(balanceWei, 3)} GEN</div>
           </div>
 
           {ELF_TOKEN_ADDRESS && (
@@ -147,12 +153,12 @@ export function Header() {
               disabled={claiming || hasClaimedFaucet}
               title={
                 hasClaimedFaucet
-                  ? 'Faucet already claimed for this address'
-                  : 'Claim 100,000 ELF to start playing'
+                  ? 'Already grabbed your starter chips'
+                  : 'Grab 100,000 ELF chips to start playing'
               }
               className="rounded-lg border border-neon-gold/40 bg-neon-gold/10 px-2.5 py-1.5 text-[11px] font-bold tracking-wider text-neon-gold transition hover:brightness-125 disabled:opacity-40"
             >
-              {claiming ? '…' : hasClaimedFaucet ? 'CLAIMED' : 'FAUCET'}
+              {claiming ? '…' : hasClaimedFaucet ? 'CLAIMED' : 'GET CHIPS'}
             </button>
           )}
 
@@ -181,11 +187,11 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile-only fund bar: ELF balance + faucet sit next to the address. */}
+      {/* Mobile-only fund bar: chip balance + get-chips sit next to the address. */}
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 pb-2 sm:hidden">
         <div className="flex items-center gap-2 text-xs">
-          <span className="text-white/40">ELF</span>
-          <span className="font-mono text-neon-gold">{fmtElf(elfBalanceWei, 2)}</span>
+          <span className="text-white/40">Chips</span>
+          <span className="font-mono text-neon-gold">{fmtElf(elfBalanceWei, 2)} ELF</span>
         </div>
         <div className="flex items-center gap-1.5">
           {ELF_TOKEN_ADDRESS && (
@@ -195,7 +201,7 @@ export function Header() {
               disabled={claiming || hasClaimedFaucet}
               className="rounded-md border border-neon-gold/40 bg-neon-gold/10 px-2 py-1 text-[10px] font-bold tracking-wider text-neon-gold disabled:opacity-40"
             >
-              {claiming ? '…' : hasClaimedFaucet ? 'CLAIMED' : 'FAUCET'}
+              {claiming ? '…' : hasClaimedFaucet ? 'CLAIMED' : 'GET CHIPS'}
             </button>
           )}
           <button

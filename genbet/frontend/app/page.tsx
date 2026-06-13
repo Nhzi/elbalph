@@ -129,11 +129,11 @@ export default function Lobby() {
           </h1>
           <p className="mt-5 max-w-xl text-lg text-white/65">
             <span className="font-semibold text-white">ELBALPH</span> is a betting house written
-            as intelligent contracts. All bets are settled in{' '}
-            <span className="font-semibold text-neon-gold">ELF</span>, the in-app token —
-            gasless to you, audit-trail for everyone. Sports markets are resolved by validators
+            as intelligent contracts. The chips are{' '}
+            <span className="font-semibold text-neon-gold">ELF</span> — house credit you grab
+            from the faucet and play with on the site. Sports markets are resolved by validators
             reading the score page themselves; casino games are seeded from on-chain entropy and
-            paid in a single transaction. No oracles. No admin keys.
+            paid in a single transaction. No oracles. No admin keys. No wallet juggling.
           </p>
 
           <div className="mt-7 flex flex-wrap items-center gap-3">
@@ -152,10 +152,10 @@ export default function Lobby() {
           </div>
 
           <div className="mt-9 grid max-w-lg grid-cols-3 gap-3">
-            <Stat label="House bankroll" value={`${fmtGen(house, 1)} ELF`} accent="text-neon-gold" />
+            <Stat label="House bankroll" value={`${fmtGen(house, 1)} GEN`} accent="text-neon-green" />
             <Stat
               label="Sports pool"
-              value={`${fmtGen(totalSportsPool, 1)} ELF`}
+              value={`${fmtGen(totalSportsPool, 1)} GEN`}
               accent="text-neon-cyan"
             />
             <Stat
@@ -331,7 +331,7 @@ export default function Lobby() {
             </ul>
             <div className="mt-6 flex items-center justify-between text-sm">
               <span className="font-mono text-white/50">
-                bankroll {fmtGen(house, 1)} ELF
+                bankroll {fmtGen(house, 1)} GEN
               </span>
               <span className="font-semibold text-neon-pink">Enter casino →</span>
             </div>
@@ -455,8 +455,10 @@ export default function Lobby() {
               {address ? `${address.slice(0, 10)}…${address.slice(-6)}` : 'Generating…'}
             </div>
             <div className="mt-3 text-xs">
-              A throwaway key was generated in this browser. Persist it from{' '}
-              <span className="font-mono">localStorage[&apos;elbalph:pk&apos;]</span>.
+              A throwaway key generated in this browser. Persist it from{' '}
+              <span className="font-mono">localStorage[&apos;elbalph:pk&apos;]</span>. Your{' '}
+              <span className="text-neon-gold">ELF chip balance</span> lives in the casino
+              contract — it won&apos;t show up in MetaMask or Rabby.
             </div>
           </div>
         </div>
