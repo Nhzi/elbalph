@@ -51,13 +51,14 @@ export default async function main(client: GenLayerClient<any>) {
   await client.waitForTransactionReceipt({ hash: wireTx, retries: 200 });
 
   // Seed the house bankroll so the very first bet doesn't trip the
-  // "house bankroll too small" guard.
-  console.log('💰  Funding casino bankroll with 50 GEN…');
+  // "house bankroll too small" guard. 30 GEN keeps a buffer for deploy gas;
+  // 50 left no margin and tripped LackOfFundForMaxFee on Asimov testnet.
+  console.log('💰  Funding casino bankroll with 30 GEN…');
   const fundTx = await client.writeContract({
     address: casino as `0x${string}`,
     functionName: 'fund_house',
     args: [],
-    value: GEN(50),
+    value: GEN(30),
   });
   await client.waitForTransactionReceipt({ hash: fundTx, retries: 200 });
 
